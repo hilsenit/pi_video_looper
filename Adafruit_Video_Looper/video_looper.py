@@ -16,6 +16,9 @@ import threading
 from datetime import datetime
 import RPi.GPIO as GPIO
 
+
+import random
+
 from .alsa_config import parse_hw_device
 from .model import Playlist, Movie
 from .playlist_builders import build_playlist_m3u
@@ -49,6 +52,9 @@ class VideoLooper:
         """Create an instance of the main video looper application class. Must
         pass path to a valid video looper ini configuration file.
         """
+
+        # HILSEN IT ADD 
+        
         # Load the configuration.
         self._config = configparser.ConfigParser()
         if len(self._config.read(config_path)) == 0:
@@ -512,6 +518,10 @@ class VideoLooper:
         # Main loop to play videos in the playlist and listen for file changes.
         while self._running:
             # Load and play a new movie if nothing is playing.
+            # HILSEN IT CLUMPSY 
+            hilsen_it_sleep = random.randint(6, 16)
+            time.sleep(hilsen_it_sleep)
+            
             if not self._player.is_playing() and not self._playbackStopped:
                 if movie is not None: #just to avoid errors
 
